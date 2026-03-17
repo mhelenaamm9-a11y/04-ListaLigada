@@ -150,7 +150,18 @@ void excluirElemento()
 
 void buscarElemento()
 {
-	
+	int numero;
+	cout << "Digite o valor a buscar: ";//mostra a mensagem na tela 
+	cin >> numero;// quarda o valor digitado pelo usuario na variavel numero
+	//cria um ponteiro para o no resultado
+
+	NO* resultado = posicaoElemento(numero);
+	//posicaoElemento percorre a lista procurando um valor igual numero, e se encontrou da seu endereco, senao null
+	if (resultado == NULL)
+	cout << "Elemento nao encontrado.\n";
+	else {
+		cout << "Elemento encontrado: " << resultado->valor << endl;
+	}
 }
 
 
