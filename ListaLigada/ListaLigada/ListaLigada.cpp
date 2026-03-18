@@ -157,17 +157,17 @@ void buscarElemento()
 
 	NO* resultado = posicaoElemento(numero);
 	//posicaoElemento percorre a lista procurando um valor igual numero, e se encontrou da seu endereco, senao null
-	if (resultado == NULL)
-	cout << "Elemento nao encontrado.\n";
+	if (resultado != NULL)
+		cout << "Encontrado\n";
 	else {
-		cout << "Elemento encontrado: " << resultado->valor << endl;
+		cout << "Elemento nao encontrado";
 	}
 }
-
-
-
 // retorna um ponteiro para o elemento buscado
 // ou NULL se o elemento não estiver na lista
+
+
+
 NO* posicaoElemento(int numero)
 {
 	NO* aux = primeiro;
