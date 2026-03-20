@@ -145,38 +145,65 @@ void inserirElemento()
 
 void excluirElemento()
 {
-	
+	int numero;
+	cout << "Digite o valor a excluir: ";// o usuario digita o valor que quer excluir
+	cin >> numero;//guarda na variavel
+
+	// verifica se a lista esta vazia
+	if (primeiro == NULL) {
+		cout << "Lista vazia\n";
+		return;// nao tem nada pra excluir
+	}
+
+	NO* alvo = posicaoElemento(numero); // procura o numero
+
+	//  se nao encontrou encontrou
+	if (alvo == NULL) {
+		cout << "Elemento nao encontrado\n";
+		return;
+	}
+
+	// caso 1: se for o primeiro elemento
+	if (primeiro == alvo) {
+		primeiro = primeiro->prox; // primeiro agora aponta para o proximo
+		free(alvo);  // libera memoria do no
+	}
+	else {
+		NO* anterior = primeiro; // começa do primeiro
+		NO* atual = primeiro->prox;// começa do segundo
+
+
+		// percorre a lista ate achar o elemento
+		while (atual != NULL) {
+			if (atual == alvo) { // encontrou o elemento
+				anterior->prox = atual->prox; // faz o anterior pular o atual
+				free(atual);// remove da memoria
+				break;// sai do loop
+			}
+			anterior = atual;//anda o anterior 
+			atual = atual->prox;// anda atual
+		}
+	}
+
+	cout << "Elemento excluido\n";
 }
+
 
 void buscarElemento()
 {
 	int numero;
-	cout << "Digite o valor a buscar: ";//mostra a mensagem na tela 
-	cin >> numero;// quarda o valor digitado pelo usuario na variavel numero
-	//cria um ponteiro para o no resultado
-
+	cout << "Digite o valor a buscar: ";
+	cin >> numero;
+	// procura o valor na lista
 	NO* resultado = posicaoElemento(numero);
-	//posicaoElemento percorre a lista procurando um valor igual numero, e se encontrou da seu endereco, senao null
+
 	if (resultado != NULL)
-		cout << "Encontrado\n";
-	else {
-		cout << "Elemento nao encontrado";
-	}
+		cout << "Encontrado\n";// se encontrou
+	else
+		cout << "Elemento nao encontrado\n";//se nao tiver encontrado
 }
-// retorna um ponteiro para o elemento buscado
-// ou NULL se o elemento não estiver na lista
 
 
 
-NO* posicaoElemento(int numero)
-{
-	NO* aux = primeiro;
-	while (aux != NULL) {
-		if (aux->valor == numero)
-		{
-			break;
-		}
-		aux = aux->prox;
-	}
-	return aux;
-}
+
+
